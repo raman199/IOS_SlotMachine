@@ -36,33 +36,81 @@ class ViewController: UIViewController {
     @IBOutlet weak var money: UILabel!
     
     @IBAction func spin(_ sender: UIButton) {
-        //playerBet = Int(bet.text!) ?? <#default value#>
-        if(playerMoney == 0)
+        let playerBet1 = Int(bet.text!)!
+        if(playerMoney == 0 )
         {
-         
-            
+            let alert = UIAlertController(title: "Alert", message: "You ran out of Money!", preferredStyle: UIAlertController.Style.alert)
+                     alert.addAction(UIAlertAction(title: "ok", style: UIAlertAction.Style.default, handler: nil))
+                     self.present(alert, animated: true, completion: nil)
+           reset()
         }
         
-        if(playerBet > playerMoney)
+        else if(playerBet1 > playerMoney)
         {
             let alert = UIAlertController(title: "Alert", message: "You don't have enough Money to place that bet.", preferredStyle: UIAlertController.Style.alert)
             alert.addAction(UIAlertAction(title: "ok", style: UIAlertAction.Style.default, handler: nil))
             self.present(alert, animated: true, completion: nil)
-
-
         }
+        else if (playerBet <= playerMoney) {
+        reels()
+        determineWinnings()
+          turn += 1
+            showPlayerStats()
         
+        }
+        else{
+            let alert = UIAlertController(title: "Alert", message: "Please enter a valid bet amount", preferredStyle: UIAlertController.Style.alert)
+            alert.addAction(UIAlertAction(title: "ok", style: UIAlertAction.Style.default, handler: nil))
+            self.present(alert, animated: true, completion: nil)
+        }
         
     }
     @IBAction func reset(_ sender: UIButton) {
-        let alert = UIAlertController(title: "Alert", message: "Message", preferredStyle: UIAlertController.Style.alert)
-                  alert.addAction(UIAlertAction(title: "Click", style: UIAlertAction.Style.default, handler: nil))
-                  self.present(alert, animated: true, completion: nil)
+       reset()
+       
     }
     @IBAction func quit(_ sender: UIButton) {
+        reset()
+
     }
     
-    
+    func reset()
+    {
+        money.text = "1000"
+        bet.text = "20"
+        result.text = ""
+        jackpot.text = "5000"
+        
+         Vjackpot = 5000
+         playerMoney = 1000
+         winnings = 0
+         turn = 0
+            playerBet = 0
+            winNumber = 0
+            lossNumber = 0
+           
+            spinResult = "";
+            fruits = ""
+            grapes = 0
+            bananas = 0
+            cherries = 0
+            bars = 0
+            bells = 0
+            seven = 0
+            blanks = 0
+    }
+    func reels()
+    {
+        
+    }
+    func determineWinnings()
+    {
+        
+    }
+    func showPlayerStats()
+    {
+        
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
