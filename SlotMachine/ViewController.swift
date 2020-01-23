@@ -4,7 +4,11 @@
 //
 //  Created by mac on 2020-01-20.
 //  Copyright © 2020 Centennial College. All rights reserved.
-//
+//  Author’s name(s) : Ramandeep kaur, Lohit Mahay
+//  Student Number(s) : 301088232, 301093942
+//  Date last Modified : 2020-01-22
+//  Program description : Slot Machine
+//  Revision History
 
 import UIKit
 
@@ -35,6 +39,7 @@ class ViewController: UIViewController {
     @IBOutlet weak var result: UILabel!
     @IBOutlet weak var money: UILabel!
     
+    //When the player clicks the spin button the game kicks off
     @IBAction func spin(_ sender: UIButton) {
         let playerBet1 = Int(bet.text!)!
         if(playerMoney == 0 )
@@ -42,7 +47,7 @@ class ViewController: UIViewController {
             let alert = UIAlertController(title: "Alert", message: "You ran out of Money!", preferredStyle: UIAlertController.Style.alert)
                      alert.addAction(UIAlertAction(title: "ok", style: UIAlertAction.Style.default, handler: nil))
                      self.present(alert, animated: true, completion: nil)
-           reset()
+            reset()
         }
         
         else if(playerBet1 > playerMoney)
@@ -51,11 +56,13 @@ class ViewController: UIViewController {
             alert.addAction(UIAlertAction(title: "ok", style: UIAlertAction.Style.default, handler: nil))
             self.present(alert, animated: true, completion: nil)
         }
-        else if (playerBet <= playerMoney) {
-        reels()
-        determineWinnings()
-          turn += 1
+        else if (playerBet1 <= playerMoney) {
+            reels()
+            determineWinnings()
+            turn += 1
             showPlayerStats()
+            money.text = String(playerMoney + playerBet1)
+            playerMoney  += playerBet1
         
         }
         else{
@@ -73,11 +80,11 @@ class ViewController: UIViewController {
         reset()
 
     }
-    
+    //function to reset slot machine
     func reset()
     {
         money.text = "1000"
-        bet.text = "20"
+        bet.text = "10"
         result.text = ""
         jackpot.text = "5000"
         
@@ -99,9 +106,11 @@ class ViewController: UIViewController {
             seven = 0
             blanks = 0
     }
+    
+    // function  to determines the betLine results.
     func reels()
     {
-        
+        result.text = "You Won!"
     }
     func determineWinnings()
     {
